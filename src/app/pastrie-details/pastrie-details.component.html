@@ -1,0 +1,18 @@
+<div class="container border border-2 text-center" style="margin-bottom : 20px; width:620px">
+    <h1 class="card-title"> {{this.pastrie.name}} </h1>
+    <img src="{{this.pastrie.url}}"/>
+    <div class="row border-top border-2">
+        <h1>Ingredients</h1>
+    </div>
+    <div class="row border-top border-2" *ngFor="let ingredient of this.ingredients;let index = index">
+        <p style="padding:13px;font-size: large;">{{ ingredient }}</p>
+        <a class="text-danger" (click)="deleteIngre(index)">Delete</a>
+    </div>
+    <div class="row border-top border-2">
+        <input class="border-primary" placeholder="Ajouter un ingredient" name="label{{this.pastrie.id}}"(keyup.enter)="addIngre($event)">
+    </div>
+    <div class="row border-top border-2 btn-container">
+        <button class="btn btn-secondary" style="width:49%" (click)="sortList()"> Trier par ordre alphabétique</button>
+        <button class="btn btn-secondary" style="width:49%;" (click)="sortReverse()"> Trier par ordre inverse</button>
+    </div>
+</div>

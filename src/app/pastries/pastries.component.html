@@ -1,0 +1,38 @@
+<ul class="cardContainer" *ngIf="this.pastrieService.pastries !== null">
+
+    <div class="details" *ngIf="this.pastrieService.selectedPastrie !== undefined">
+        <app-pastrie-details [pastrie]="this.pastrieService.selectedPastrie"></app-pastrie-details>
+    </div>
+    
+    
+    <li class="pastrieContainer" style="margin-bottom : 20px;" *ngFor="let pastrie of this.pastrieService.pastries">
+        
+        <div class="card text-center" style="width : 50rem;">
+            <div class="card-header">
+                {{ pastrie.ref }}
+            </div>
+           
+            <div class="card-body">
+                <h5 class="card-title">{{ pastrie.name }}</h5>
+                <p class="card-text">{{ pastrie.description }}</p>
+                <ul style="list-style:none" class="list-inline" *ngIf="pastrie.tags">
+                    <li class="list-inline-item" *ngFor="let tag of pastrie.tags">
+                        <span class="badge text-bg-primary">{{ tag }}</span>
+                    </li>
+                </ul>
+                <a class="btn btn-outline-dark" href="#" role="button">fr</a>
+                <ng-template [ngIf]="pastrie.like">
+                    <img style="margin-left : 10px;" width="15px" class="glyph-icon" src="../../assets/svg/si-glyph-heart.svg"/>
+                    <small style="margin-left : 2px;">{{ pastrie.like }}</small>
+                </ng-template>
+
+                <ng-template [ngIf]="pastrie.quantity">
+                    <img style="margin-left : 10px;" width="15px" class="glyph-icon" src="../../assets/svg/si-glyph-triangle-double-arrow-right.svg"/>
+                    <small style="margin-left : 2px;">{{ pastrie.quantity }} Unités Disponibles</small>
+                </ng-template>
+            </div>
+            
+            <button class="btn btn-secondary" (click)="this.pastrieService.selectPastrie(pastrie.name)" >Détaille</button>
+        </div>
+    </li>
+</ul>
